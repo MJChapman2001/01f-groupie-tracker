@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ .Name }}</title>
+  </head>
+  <body>
+    <header>
+      <h1>{{ .Name }}</h1>
+    </header>
+    <div class="image">
+      <img src="{{ .Image }}" />
+    </div>
+    <div class="members">
+      <p>Members:</p>
+      {{ range $I := .Members }}
+      <p>{{ $I }}</p>
+      {{ end }}
+    </div>
+    <div class="creationDate">
+      <p>Formed in {{ .CreationDate }}</p>
+    </div>
+    <div class="firstAlbum">
+      <p>First album released on {{ .FirstAlbum }}</p>
+    </div>
+    <div class="locationDates">
+      {{ range $L, $D := .Relations.DatesLocations }}
+      <p>{{ $L }}</p>
+      {{ range $X := $D }}
+      <p>{{ $X }}</p>
+      {{ end }} {{ end }}
+    </div>
+  </body>
+</html>
