@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func ReadJson(link, id string) []byte {
@@ -53,6 +54,16 @@ func (r *Relations) New(id string) {
 	data := ReadJson("https://groupietrackers.herokuapp.com/api/relation/", id)
 
 	json.Unmarshal(data, &r)
+
+	for i, j := range r.DatesLocations {
+		i = strings.Replace(i, "_", " ", -1)
+		i = strings.Replace(i, "-", ", ", -1)
+
+		for _, x := range j {
+			x = strings.Replace(x, "_", " ", -1)
+			x = strings.Replace(x, "-", ", ", -1)
+		}
+	}
 }
 
 type Artist struct {

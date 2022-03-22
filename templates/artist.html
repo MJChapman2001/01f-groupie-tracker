@@ -24,7 +24,7 @@
       <p>First album released on {{ .FirstAlbum }}</p>
     </div>
     <div class="locationDates">
-      {{ range $L, $D := .Relations.DatesLocations }}
+      {{ range $L, $D := .Relations }}
       <p>{{ $L }}</p>
       {{ range $X := $D }}
       <p>{{ $X }}</p>
