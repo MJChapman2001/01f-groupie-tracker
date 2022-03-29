@@ -6,6 +6,19 @@ body {
     position: relative;
     animation: change 10s ease-in-out infinite;
     color: #fff;
+    background-attachment: fixed;
+}
+
+@keyframes change {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }
 
 h1 {
@@ -16,4 +29,62 @@ h1 {
     padding: 5rem 5rem;
     color: #fff;
     display: inline-block;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 300px 500px;
+    grid-auto-rows: minmax(15px, auto);
+    grid-gap: 20px;
+}
+
+.members-title {
+    font-size: 20px;
+    font-weight: bold;
+    display: inline;
+    position: relative;
+    z-index: 2;
+    padding: 5px;
+}
+
+.member-content {
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.members:before {
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.members {
+    border: 1px solid #fff;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    font-size: 15px;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.creation-date {
+    grid-column: 1 / 2;
+}
+
+.first-album {
+    grid-column: 1/2;
+}
+
+.location-dates {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    grid-column: 2/3;
+    grid-row: 2 / 4;
+    padding: 0;
 }
