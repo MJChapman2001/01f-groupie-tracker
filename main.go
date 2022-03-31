@@ -11,6 +11,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", api.HomeHandler)
 	mux.HandleFunc("/artists", api.ArtistHandler)
+	mux.HandleFunc("/locations", api.LocationHandler)
 	if err := http.ListenAndServe(":8000", mux); err != nil {
 		log.Fatal(err)
 	}
