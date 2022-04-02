@@ -1,38 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <title>{{ .Name }}</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="/static/stylesheets/artists.css">
+
+</head>
+
+<body>
     <header>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/locations">Locations</a>
-      </nav>
-      <h1>{{ .Name }}</h1>
+        <nav>
+            <a class="nav" href="/">Home</a>
+            <a class="nav" href="/locations">Locations</a>
+        </nav>
+
     </header>
+
+    <div class="name">
+        <h1>{{ .Name }}</h1>
+    </div>
     <div class="image">
-      <img src="{{ .Image }}" />
+        <img src="{{ .Image }}" />
     </div>
-    <div class="members">
-      <p>Members:</p>
-      {{ range $I := .Members }}
-      <p>{{ $I }}</p>
-      {{ end }}
+
+    <div class="grid-container">
+        <div class="members">
+            <p class="membersTitle">Members:</p>
+            {{ range $I := .Members }}
+            <p>{{ $I }}</p>
+            {{ end }}
+            <p class="creationDate">Formed in {{ .CreationDate }}</p>
+            <p class="firstAlbum">First album released on {{ .FirstAlbum }}</p>
+        </div>
+
+        <div class="locationDates">
+            {{ range $L, $D := .Relations }}
+            <p class="locationRange">{{ $L }}</p>
+            {{ range $X := $D }}
+            <p>{{ $X }}</p>
+            {{ end }} {{ end }}
+        </div>
     </div>
-    <div class="creationDate">
-      <p>Formed in {{ .CreationDate }}</p>
-    </div>
-    <div class="firstAlbum">
-      <p>First album released on {{ .FirstAlbum }}</p>
-    </div>
-    <div class="locationDates">
-      {{ range $L, $D := .Relations }}
-      <p>{{ $L }}</p>
-      {{ range $X := $D }}
-      <p>{{ $X }}</p>
-      {{ end }} {{ end }}
-    </div>
-  </body>
+
+</body>
+
 </html>

@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <title>Groupie Tracker</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="/static/stylesheets/index.css">
+</head>
+
+<body>
     <header>
-      <nav>
-        <a href="/locations">Locations</a>
-      </nav>
-      <h1>Groupie Tracker</h1>
+        <nav>
+            <a href="/locations">Locations</a>
+        </nav>
+        <h1>Groupie Tracker</h1>
     </header>
     <div class="Artists">
-      {{ range . }}
-      <a href="/artists?id={{ .Id }}">
-        <div>
-          <img src="{{ .Image }}" />
-          <p>{{ .Name }}</p>
-        </div>
-      </a>
-      {{ end }}
+        {{ range . }}
+        <a href="/artists?id={{ .Id }}">
+            <div class="image">
+                <img src="{{ .Image }}" />
+                <p>{{ .Name }}</p>
+            </div>
+        </a>
+        {{ end }}
     </div>
-  </body>
+</body>
+
 </html>

@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <title>Locations</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="/static/stylesheets/locations.css">
+</head>
+
+<body>
     <header>
-      <nav>
-        <a href="/">Home</a>
-      </nav>
-      <h1>Locations</h1>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+        <h1>Locations</h1>
     </header>
+
     <div class="locations">
-      {{ range $Country, $Cities := . }}
-      <div class="location">
-        <h2>{{ $Country }}</h2>
-        {{ range $City, $Artists := $Cities }}
-        <p><b>{{ $City }}</b></p>
-        {{ range $Artist := $Artists }}
-        <a href="/artists?id={{ $Artist.Id }}">{{ $Artist.Name }}</a>
-      </div>
-      {{ end }} {{ end }} {{ end }}
+        {{ range $Country, $Cities := . }}
+        <div class="location">
+            <h2>{{ $Country }}</h2>
+            {{ range $City, $Artists := $Cities }}
+            <p><b>{{ $City }}</b></p>
+            {{ range $Artist := $Artists }}
+            <a href="/artists?id={{ $Artist.Id }}">{{ $Artist.Name }}</a>
+        </div>
+        {{ end }} {{ end }} {{ end }}
     </div>
-  </body>
+</body>
+
 </html>
