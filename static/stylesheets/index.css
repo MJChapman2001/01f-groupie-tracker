@@ -1,43 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 body {
-    font-family: 'Lato', Arial, sans-serif;
-    background: #1F2933
+  font-family: "Lato", Arial, sans-serif;
+  background: #1f2933;
 }
 
 h1 {
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border: 3px solid #fff;
-    padding: 5rem 5rem;
-    color: #EDC298;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 3px solid #fff;
+  padding: 5rem 5rem;
+  color: #edc298;
+}
+
+.Artists {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .image {
-    border: 1px solid #EDC298;
-    display: inline-block;
-    margin: 10px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  border: 1px solid #edc298;
+  display: inline-block;
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 p {
-    text-align: center;
+  text-align: center;
 }
 
 a {
-    color: #fff;
+  font-family: "Lato", Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
 }
 
 .name::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: #fff;
-    transition: width .3s;
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s;
 }
 
 .name:hover::after {
-    width: 100%;
-    transition: width .3s;
+  width: 100%;
+  transition: width 0.3s;
 }
