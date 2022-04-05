@@ -20,7 +20,7 @@ go run main.go
 - In the terminal execute
 
 ```
-go run test .
+go test .
 ```
 
 - The output should be 'ok' for a successful test and a fail for any other output
