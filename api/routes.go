@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"strings"
 	"strconv"
-	//"fmt"
 	
 	"groupie-tracker/models"
 )
@@ -28,7 +27,17 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/artist.html"))
 
+	if r.URL.Path != "/artists" {
+		http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		return
+	}
+
 	id := r.URL.Query().Get("id")
+
+	if temp, _ := strconv.Atoi(id); temp > 52 || temp < 1 {
+		http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		return
+	}
 
 	var Artist models.Artist
 	Artist.New(id)
@@ -58,6 +67,11 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 
 func LocationHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/locations.html"))
+
+	if r.URL.Path != "/locations" {
+		http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		return
+	}
 
 	Locations := make(map[string]map[string][]models.Artist)
 
