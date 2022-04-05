@@ -13,14 +13,14 @@ body {
   margin: 30px;
 }
 
-.nav {
+nav {
   color: #edc298;
   font-family: "Lato", Arial, sans-serif;
   color: white;
   text-decoration: none;
 }
 
-.nav:hover {
+nav:hover {
   text-decoration: underline;
 }
 
