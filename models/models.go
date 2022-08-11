@@ -72,3 +72,8 @@ func (a *Artist) New(id string) {
 
 	json.Unmarshal(data, &a)
 }
+
+type Err struct {
+	Code string
+	Name string
+}

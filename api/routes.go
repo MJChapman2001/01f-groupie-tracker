@@ -13,14 +13,18 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/index.html"))
 
 	if r.URL.Path != "/" {
-		http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		// http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		e := models.Err{Code: "404", Name: "Status Not Found"}
+		ErrorHandler(w, r, e)
 		return
 	}
 
 	Artists := LoadAllArtists()
 
 	if err := tmpl.Execute(w, Artists); err != nil {
-		http.Error(w, "Internal Error", http.StatusInternalServerError)
+		// http.Error(w, "Internal Error", http.StatusInternalServerError)
+		e := models.Err{Code: "500", Name: "Internal Server Error"}
+		ErrorHandler(w, r, e)
 	}
 }
 
@@ -28,14 +32,18 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/artist.html"))
 
 	if r.URL.Path != "/artists" {
-		http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		// http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		e := models.Err{Code: "404", Name: "Status Not Found"}
+		ErrorHandler(w, r, e)
 		return
 	}
 
 	id := r.URL.Query().Get("id")
 
 	if temp, _ := strconv.Atoi(id); temp > 52 || temp < 1 {
-		http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		// http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		e := models.Err{Code: "404", Name: "Status Not Found"}
+		ErrorHandler(w, r, e)
 		return
 	}
 
@@ -61,7 +69,9 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	Artist.Relations = relations
 
 	if err := tmpl.Execute(w, Artist); err != nil {
-		http.Error(w, "Internal Error", http.StatusInternalServerError)
+		// http.Error(w, "Internal Error", http.StatusInternalServerError)
+		e := models.Err{Code: "500", Name: "Internal Server Error"}
+		ErrorHandler(w, r, e)
 	}
 }
 
@@ -69,7 +79,9 @@ func LocationHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/locations.html"))
 
 	if r.URL.Path != "/locations" {
-		http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		// http.Error(w, "404 Status Not Found", http.StatusNotFound)
+		e := models.Err{Code: "404", Name: "Status Not Found"}
+		ErrorHandler(w, r, e)
 		return
 	}
 
@@ -104,6 +116,13 @@ func LocationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := tmpl.Execute(w, Locations); err != nil {
-		http.Error(w, "Internal Error", http.StatusInternalServerError)
+		// http.Error(w, "Internal Error", http.StatusInternalServerError)
+		e := models.Err{Code: "500", Name: "Internal Server Error"}
+		ErrorHandler(w, r, e)
 	}
+}
+
+func ErrorHandler(w http.ResponseWriter, r *http.Request, err models.Err) {
+	tmpl := template.Must(template.ParseFiles("templates/error.html"))
+	tmpl.Execute(w, err)
 }
